@@ -55,6 +55,7 @@ add_library(glm_static STATIC ${ROOT_TEXT} ${ROOT_MD} ${ROOT_NAT}
 	${SIMD_SOURCE}    ${SIMD_INLINE}    ${SIMD_HEADER})
 	target_link_libraries(glm_static PUBLIC glm)
 	add_library(glm::glm_static ALIAS glm_static)
+	install(TARGETS glm_static DESTINATION lib)
 endif()
 
 if(BUILD_SHARED_LIBS)
@@ -67,4 +68,11 @@ add_library(glm_shared SHARED ${ROOT_TEXT} ${ROOT_MD} ${ROOT_NAT}
 	${SIMD_SOURCE}    ${SIMD_INLINE}    ${SIMD_HEADER})
 	target_link_libraries(glm_shared PUBLIC glm)
 	add_library(glm::glm_shared ALIAS glm_shared)
+	install(TARGETS glm_shared DESTINATION lib)
 endif()
+
+install(FILES ${CORE_HEADER} DESTINATION include/glm)
+install(FILES ${EXT_HEADER} DESTINATION include/glm/ext)
+install(FILES ${GTC_HEADER} DESTINATION include/glm/gtc)
+install(FILES ${GTX_HEADER} DESTINATION include/glm/gtx)
+install(FILES ${SIMD_HEADER} DESTINATION include/glm/simd)
